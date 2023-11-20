@@ -9,8 +9,7 @@ This pipeline can be run using each of the following container methods
 | Method      | Instructions                                                                                   |
 | ----------- | ---------------------------------------------------------------------------------------------- |
 | Singularity | [docs.syslabs.io](https://docs.sylabs.io/guides/3.0/user-guide/installation.html)              |
-| Docker      | [docs.docker.com](https://docs.docker.com/engine/install/)                                     |
-| Conda       | [docs.conda.io](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)  |
+
 
 
 ## Setup
