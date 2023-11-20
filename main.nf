@@ -35,16 +35,19 @@ def help() {
 	
 """.stripIndent()
 }
+params.percent_values = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 
 /// Define the main workflow
 workflow {
     /// Define the input channels
-    fastq_ch = Channel.fromPath("${params.input_dir}/*.fastq.gz")
+    fastq_ch        = Channel.fromPath("${params.input_dir}/*.fastq.gz")
                         .ifEmpty { exit 1, "No fastq files found in ${params.input_dir}" }
 
-    /// Run the subworkflow
-    quality_control(fastq_ch)
-}
+    percents        = Channel.of(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
+    combined_ch     = fastq_ch.combine(percents) 
+
+    quality_control(combined_ch)
+    }
 
 workflow.onComplete {
     log.info "Pipeline completed at: ${new Date().format('dd-MM-yyyy HH:mm:ss')}"

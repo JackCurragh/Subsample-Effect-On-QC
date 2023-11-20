@@ -1,18 +1,16 @@
 
-// Example module that runs fastqc on a single fastq file.
-// Results are publushed to the study directory in the fastqc directory
 
 process FASTQC {
 
-    tag 'medium'
-
 	publishDir "${params.output_dir}/fastqc", mode: 'copy'
 	
-	input:
+    container = 'docker://quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0'
+	
+    input:
 	    file fastq 
 
 	output:
-	    path "*_fastqc.{zip,html}", emit: fastqc_full_reports
+	    path "*_fastqc.zip", emit: fastqc_zip
 
     script:
         """
