@@ -11,3 +11,4 @@ data/
 *.html
 *.zip
 singularity/*
+sample_data/bigger_sample
